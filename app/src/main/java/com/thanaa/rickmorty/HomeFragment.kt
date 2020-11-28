@@ -18,7 +18,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var characterAdapter :CharacterAdapter
         val characterList : RecyclerView = requireView().findViewById(R.id.character_list)
         val retrofit:api = Retrofit.Builder()
             .baseUrl("https://rickandmortyapi.com/api/")
@@ -31,7 +30,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
            if(response.isSuccessful){
                if (response.body() != null){
                    val data = response.body()!!.results
-              //     characterAdapter = CharacterAdapter(data)
                    withContext(Dispatchers.Main){
                        characterList.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
                        characterList.adapter = CharacterAdapter(data)
